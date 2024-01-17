@@ -1,47 +1,16 @@
 process.stdout.write('hello from spinner1.js... \rheyyy\n');
+const char = ['\r|', '\r/', '\r-', '\r\\', '\r|', '\r/', '\r-','/r\\', '\r|'];
 
-setTimeout(() => {
-  process.stdout.write('\r|   ');
-}, 100);
+let i = 0;
 
-setTimeout(() => {
-  process.stdout.write('\r/   ');
-}, 300);
+function printCharacter() {
+  if (i < char.length) {
+    process.stdout.write(char[i]);
+    i++;
+  } else {
+    clearInterval(intId);
+    console.log(); // Add a new line after printing the sentence
+  }
+}
 
-setTimeout(() => {
-  process.stdout.write('\r-   ');
-}, 500);
-
-setTimeout(() => {
-  // Need to escape the backslash since it's a special character.
-  process.stdout.write('\r\\   '); 
-}, 700);
-
-setTimeout(() => {
-  // Need to escape the backslash since it's a special character.
-  process.stdout.write('\r|    '); 
-}, 900);
-
-setTimeout(() => {
-  // Need to escape the backslash since it's a special character.
-  process.stdout.write('\r/   '); 
-}, 1100);
-
-setTimeout(() => {
-  // Need to escape the backslash since it's a special character.
-  process.stdout.write('\r-   '); 
-}, 1300);
-
-setTimeout(() => {
-  // Need to escape the backslash since it's a special character.
-  process.stdout.write('\r\\   '); 
-}, 1500);
-
-
-setTimeout(() => {
-  // Need to escape the backslash since it's a special character.
-  process.stdout.write('\r|   '); 
-}, 1700);
-
-
-// ... fill in the rest yourself ...
+let intId = setInterval(printCharacter, 200);
